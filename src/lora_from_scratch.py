@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import Tuple
+from typing import Tuple, List
 import math
 
 class LinearLoRA(nn.Module):
@@ -84,7 +84,7 @@ def add_lora_layers(
     r: int=8, 
     lora_alpha: float=16,
     lora_dropout: float=0.1, 
-    ignore_layers: list[int]=[]  
+    ignore_layers: List[int]=[]  
 ):
     """
         Replaces chosen linear modules with LoRA equivalents. 
