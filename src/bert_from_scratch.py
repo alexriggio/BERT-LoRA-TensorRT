@@ -258,7 +258,7 @@ class BertForSequenceClassification(nn.Module):
                 dim1, dim2 = list(orig_wei.shape)
                 orig_wei.copy_(new_wei[:dim1, :dim2])
             elif n_dim == 3:
-                dim1, dim2, dim3 = list(orig_param.shape)
+                dim1, dim2, dim3 = list(orig_wei.shape)
                 orig_wei.copy_(new_wei[:dim1, :dim2, :dim3])
         
     @classmethod
