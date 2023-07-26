@@ -1,16 +1,15 @@
+from dataclasses import dataclass
+from typing import Tuple, TypeVar
+
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
-from dataclasses import dataclass
-from typing import Tuple
-from typing import TypeVar
 
 
 @dataclass
 class BertConfig:
     """
     Configuration class for BERT model.
-
 
     Attr:
         max_seq_length: int = Integer representing the maximum sequence length the model can process. 
@@ -25,7 +24,6 @@ class BertConfig:
         layer_norm_eps: float = Float representing the epsilon value used in LayerNorm. 
         pad_token_id: int = Integer representing the token id for the padding token.
         return_pooler_output: bool = Bool that if True returns the pooled output from the encoder (in addition to the logits).
-
     """   
     max_seq_length: int = 512 
     vocab_size: int = 30522
@@ -61,7 +59,6 @@ class BertEmbeddings(nn.Module):
         emb = word_emb + pos_emb + type_emb
         emb = self.LayerNorm(emb)
         emb = self.dropout(emb)
-
         return emb
     
     
@@ -75,7 +72,6 @@ class BertSelfAttention(nn.Module):
         self.key = nn.Linear(config.emb_size, config.emb_size)
         self.value = nn.Linear(config.emb_size, config.emb_size)
         self.dropout = nn.Dropout(config.dropout)
-
 
     def forward(self, emb, att_mask):
         B, T, C = emb.shape  # batch size, sequence length, embedding size   
@@ -95,8 +91,7 @@ class BertSelfAttention(nn.Module):
         weights = self.dropout(weights)
         
         emb_rich = weights @ v
-        emb_rich = emb_rich.transpose(1, 2).contiguous().view(B, T, C)
-    
+        emb_rich = emb_rich.transpose(1, 2).contiguous().view(B, T, C)   
         return emb_rich
 
 
@@ -112,7 +107,6 @@ class BertSelfOutput(nn.Module):
         x = self.dropout(x)
         x = x + emb
         out = self.LayerNorm(x)
-
         return out
 
 
@@ -125,7 +119,6 @@ class BertAttention(nn.Module):
     def forward(self, emb, att_mask):
         emb_rich = self.self(emb, att_mask)
         out = self.output(emb_rich, emb)
-
         return out
 
 
@@ -138,7 +131,6 @@ class BertIntermediate(nn.Module):
     def forward(self, att_out):
         x = self.dense(att_out)
         out = self.gelu(x)
-
         return out
 
 
@@ -154,7 +146,6 @@ class BertOutput(nn.Module):
         x = self.dropout(x)
         x = x + att_out
         out = self.LayerNorm(x)
-
         return out 
 
 
@@ -169,7 +160,6 @@ class BertLayer(nn.Module):
         att_out = self.attention(emb, att_mask)
         intermediate_out = self.intermediate(att_out)
         out = self.output(intermediate_out, att_out)
-
         return out
 
 
@@ -181,7 +171,6 @@ class BertEncoder(nn.Module):
     def forward(self, emb, att_mask):
         for bert_layer in self.layer:
             emb = bert_layer(emb, att_mask)
-
         return emb
 
 
@@ -227,11 +216,9 @@ class BertForSequenceClassification(nn.Module):
         logits = self.classifier(pooled_out)
         
         if self.config.return_pooler_output:
-            return pooled_out, logits
-        
+            return pooled_out, logits        
         return logits
-    
-    
+     
     def reduce_seq_len(self, seq_len):
         """
         Reduces the accepted sequence length of the inputs into the model.
@@ -246,23 +233,21 @@ class BertForSequenceClassification(nn.Module):
         self.bert.embeddings.position_ids = self.bert.embeddings.position_ids[:, :seq_len]
         print(f"Sequence length successfully reduced to {seq_len}.")
         self.config.max_seq_length = seq_len
-    
-    
+        
     @staticmethod
     def adaptive_copy(orig_wei, new_wei):
         """
         Copies the new weights from the pretrained model into the custom model. 
         If the dimensions of the new weights are larger then it only copies the 
         portions that fit.
+            
             e.g. old_weight_dim = (1 x 64), new_weight_dim = (1 x 512) 
                 Replaces the old weights with the first 64 elements of the new weights.
-        
-        
+              
         Args:
             orig_wei: torch.tensor = Torch tensor containing the weights from the custom model
             new_wei: torch.tensor = Torch tensor containing the weights from the pretrained model
-        """                     
-        
+        """                             
         n_dim = orig_wei.dim()
         
         with torch.no_grad():
@@ -275,14 +260,12 @@ class BertForSequenceClassification(nn.Module):
             elif n_dim == 3:
                 dim1, dim2, dim3 = list(orig_param.shape)
                 orig_wei.copy_(new_wei[:dim1, :dim2, :dim3])
-    
-    
+        
     @classmethod
     def from_pretrained(cls, model_type, config_args=None, adaptive_weight_copy=False):
         """
         Instantiates the BERT model and loads the weights from a compatible hugging face model.
-        
-        
+               
         Args:
             cls: None = Refers to the class itself, similar to how self refers to the instance of the class.
             model_type: str = Model name (hugging face) or local path 
@@ -295,9 +278,9 @@ class BertForSequenceClassification(nn.Module):
                 
         Returns:
             torch.nn.Module: A pytorch model
-        """                     
-            
+        """                             
         from transformers import BertForSequenceClassification as HFBertForSequenceClassification
+        
         print(f"Loading weights from pretrained model: {model_type}")
         
         if config_args:
@@ -333,6 +316,5 @@ class BertForSequenceClassification(nn.Module):
             # adaptively copy over weights by cropping them if the dimensions are larger
             else:
                 with torch.no_grad():
-                    cls.adaptive_copy(sd[k], sd_hf[k])      
-            
+                    cls.adaptive_copy(sd[k], sd_hf[k])                  
         return model
