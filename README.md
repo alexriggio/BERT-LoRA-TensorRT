@@ -4,7 +4,7 @@
 Explore the end-to-end process of building BERT and LoRA models from scratch, fine-tuning them on a specific task, and optimizing the resulting models for fast GPU inference using NVIDIA's TensorRT. 
 
 ## Motivation
-This project, while serving as a comprehensive guide to understanding, implementing, and optimizing transformer-based models for improved performance and efficiency, is also a representation of my learning journey and serves as a portfolio piece showcasing some of the skills I have picked up along the way in machine learning and natural language processing.
+This project, while serving as a comprehensive guide to understanding, implementing, and optimizing transformer-based models for improved performance and efficiency, is also a representation of my learning journey and serves as a portfolio piece showcasing some skills I have picked up along the way in machine learning and natural language processing.
 
 ## Technologies
 
