@@ -11,13 +11,15 @@ This project, while serving as a comprehensive guide to understanding, implement
 This project makes use of the following technologies and tools:
 
 * **Python**: The programming language used for implementing the project.
-* **NumPy**: A library utilized for enabling efficient operations on multi-dimensional data structures, particularly in scenarios where PyTorch tensors were not appropriate.
+* **NumPy**: A library used for efficient multi-dimensional data operations where PyTorch tensors aren't suitable.
 * **Pandas**: A library used for cleaning, transforming, and exploring the data prior to model fine-tuning.
 * **PyTorch**: A library used to build the BERT and LoRA models from scratch and for fine-tuning.
 * **Hugging Face Transformers**: A library used to access pretrained models and weights. It was predominantly employed to load these models and conduct further training in the optimization section of this project.
 * **NVIDIA TensorRT**: A high-performance deep learning inference optimizer and runtime library used to optimize models for fast inference.
 * **Transformer-Deploy Library**: A library used to simplify the the process of applying TensorRT inference optimizations to the models.
-* **Docker**: Deployed to ensure a consistent and replicable environment, particularly instrumental in streamlining the installation of NVIDIA dependencies such as CUDA and cuBLAS.
+* **ONNX**: An open standard for representing machine learning models used for converting PyTorch models into a format that can be optimized by TensorRT.
+* **Docker**: Deployed to ensure a consistent and replicable environment, streamlining the installation of NVIDIA dependencies such as CUDA and cuBLAS.
+
 ## Table of contents
 * [Part 1: Building BERT from Scratch](#building-bert-from-scratch)
 * [Part 2: Building LoRA From Scratch](#building-lora-from-scratch)
@@ -133,7 +135,7 @@ Performance of the models after fine-tuning:
 * The five epochs of training time was overkill for most models. However, the model with LoRA applied to the last four layers did not fully converge, probably can increase learning rate.
 ## Optimizing BERT for Fast Inference with NVIDIA TensorRT
 
-This section covers the process of applying optimizations, including INT8 Quantization, to a fine-tuned BERT model for accelerating inference times with NVIDIA TensorRT, facilitated with the Transformer-deploy library.
+The `tensort_optimization.ipynb` notebook covers the process of applying optimizations, including INT8 Quantization, to a fine-tuned BERT model for accelerating inference times with NVIDIA TensorRT, facilitated with the Transformer-deploy library.
 
 ### Setup and Requirements
 
