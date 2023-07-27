@@ -54,7 +54,7 @@ The `fine_tuning.ipynb` notebook involves fine-tuning the custom implementations
 #### Dependencies
 To install the necessary dependencies for the `fine_tuning.ipynb` notebook, run the following command:
 
-`pip install -r requirements_fine_tuning.txt`
+`pip install -r notebooks/requirements/requirements_fine_tuning.txt`
 
 
 
