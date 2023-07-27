@@ -36,18 +36,18 @@ This project makes use of the following technologies and tools:
     * [Results](#results-1)
     * [Conclusions](#conclusions-1)
 ## Building BERT from Scratch
-This Python script is used to build a BERT model for Sequence Classification from scratch. It implements the architecture and mechanics of the BERT model, creating a ready-to-train model that can be fine-tuned on specific tasks. Notably, the model architecture and module/parameter names mirror the Hugging Face implementation, ensuring that weights between the two are compatible. This script includes a `from_pretrained` class method, working in the same way as in Hugging Face's model.
+The `bert_from_scratch.py` script is used to build a BERT model for Sequence Classification from scratch. It implements the architecture and mechanics of the BERT model, creating a ready-to-train model that can be fine-tuned on specific tasks. Notably, the model architecture and module/parameter names mirror the Hugging Face implementation, ensuring that weights between the two are compatible. This script includes a `from_pretrained` class method, working in the same way as in Hugging Face's model.
 
 For an in-depth explanation of the theory behind this model, as well as an understanding of the code, refer to the accompanying Medium article: Coming soon...
 ## Building LoRA From Scratch
-This Python script contains a custom implementation of the LoRA (Low-Rank Adaptation) method. LoRA is a technique that aims to maintain a high level of accuracy while reducing the computational cost and complexity associated with fine-tuning large models. It does this by appending low-rank adaptation matrices to specific parameters of the model, while the remaining parameters are "frozen" or kept constant. As a result, the total quantity of trainable parameters is greatly reduced. 
+The `lora_from_scratch.py` script contains a custom implementation of the LoRA (Low-Rank Adaptation) method. LoRA is a technique that aims to maintain a high level of accuracy while reducing the computational cost and complexity associated with fine-tuning large models. It does this by appending low-rank adaptation matrices to specific parameters of the model, while the remaining parameters are "frozen" or kept constant. As a result, the total quantity of trainable parameters is greatly reduced. 
 
 For a comprehensive understanding of the theory and implementation details behind LoRA, please refer to the accompanying Medium article: Coming soon...
 
 
 ## Fine-Tuning BERT with LoRA for Stack Overflow Question Classification
 
-This notebook involves fine-tuning the custom implementations of BERT and LoRA on the task of classifying whether questions submitted to Stack Overflow will be closed or not by the moderators.
+The `fine_tuning.ipynb` notebook involves fine-tuning the custom implementations of BERT and LoRA on the task of classifying whether questions submitted to Stack Overflow will be closed or not by the moderators.
 
 ### Setup and Requirements
 
@@ -103,7 +103,7 @@ Six variants of BERT:
 
 ### Process
 
-Each model is initialized with pretrained weights from the Hugging Face Hub, then fine-tuned with the training and validation set using the training loop in the `BERTTrainer` class. The models are evaluated on the test set using weights from the epoch with the lowest validation loss.
+Each model is initialized with pretrained weights from the Hugging Face Hub, then fine-tuned with the training and validation set using the training loop in the `BertTrainer` class. The models are evaluated on the test set using weights from the epoch with the lowest validation loss.
 
 ### Results
 
@@ -159,7 +159,7 @@ Additionally, the `tensorrt_optimization.ipynb` notebook depends on the `transfo
 
 ### Model Selection
 
-I focus on optimizing the fine-tuned BERT-base model. This choice represents a balance between performance and complexity: the BERT-base model had the second-best performance of all the models fine-tuned in the previous section, and it achieves this performance without the added complexity of incorporating tabular data.
+I focus on optimizing the fine-tuned BERT-base model. This choice represents a balance between performance and complexity: the BERT-base model had the second-best performance of all the [models fine-tuned](#models), and it achieves this performance without the added complexity of incorporating tabular data.
 
 ### INT8 Quantization Process
 
