@@ -14,7 +14,7 @@ This project makes use of the following technologies and tools:
 * **NumPy**: A library used for efficient multi-dimensional data operations where PyTorch tensors aren't suitable.
 * **Pandas**: A library used for cleaning, transforming, and exploring the data prior to model fine-tuning.
 * **PyTorch**: A library used to build the BERT and LoRA models from scratch and for fine-tuning.
-* **Hugging Face Transformers**: A library used to access pretrained models and weights. It was predominantly employed to load these models and conduct further training in the optimization section of this project.
+* **Hugging Face Transformers**: A library used to access pretrained models and weights. It was predominantly employed to load models and conduct further training in the optimization section of this project.
 * **NVIDIA TensorRT**: A high-performance deep learning inference optimizer and runtime library used to optimize models for fast inference.
 * **Transformer-Deploy**: A library used to simplify the the process of applying TensorRT inference optimizations to the models.
 * **ONNX**: An open standard for representing machine learning models used for converting PyTorch models into a format that can be optimized by TensorRT.
@@ -97,7 +97,7 @@ The dataset used for fine-tuning the models is a balanced collection of 140,272 
 Six variants of BERT:
 
 * **BERT-base**: BERT base uncased
-* **BERTOverflow**: BERT-base pretrained on 152 million sentences from Stack Overflow
+* **BERT Overflow**: BERT-base pretrained on 152 million sentences from Stack Overflow
 * **BERT Tabular**: BERT-base modified to accept tabular features
 * **LoRA BERT - Rank 1**: BERT-base adapted with a low-rank approximation of rank 1
 * **LoRA BERT - Rank 8**: BERT-base adapted with a low-rank approximation of rank 8
@@ -127,6 +127,8 @@ Performance of the models after fine-tuning:
 ### Conclusions
 
 * The tabular data provided a slight increase in performance but may be due to the stochastic nature of the training process. The small performance boost likely does not justify the additional complexity.
+
+* The relatively underwhelming performance of the BERT Overflow model was surprising, given its pretraining on text assumed to closely resemble the fine-tuning dataset.
 
 * The LoRA models experienced hardly any drop in accuracy or increase in validation loss. Highlights the redundancy in the change-in-weight matrices and why LoRA has become so ubiquitous for training LLMs. 
 
