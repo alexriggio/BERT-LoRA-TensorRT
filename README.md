@@ -1,7 +1,7 @@
 
 # BERT and LoRA Fine-Tuning from Scratch: Fast Inference with TensorRT
 
-Explore the end-to-end process of building BERT and LoRA models from scratch, fine-tuning them on a specific task, and optimizing the resulting models for faster inference using NVIDIA's TensorRT. 
+Explore the end-to-end process of building BERT and LoRA models from scratch, fine-tuning them on a specific task, and optimizing the resulting models for fast GPU inference using NVIDIA's TensorRT. 
 
 ## Motivation
 This project, while serving as a comprehensive guide to understanding, implementing, and optimizing transformer-based models for improved performance and efficiency, is also a representation of my learning journey and serves as a portfolio piece showcasing some of the skills I have picked up along the way in machine learning and natural language processing.
@@ -11,12 +11,12 @@ This project, while serving as a comprehensive guide to understanding, implement
 This project makes use of the following technologies and tools:
 
 * **Python**: The programming language used for implementing the project.
-* **NumPy**: This library was utilized for enabling efficient operations on multi-dimensional data structures, particularly in scenarios where PyTorch tensors were not appropriate.
-* **Pandas**: This library was used cleaning, transforming, and exploring the data prior to model training.
-* **PyTorch**: This library was used to build the BERT and LoRA models from scratch and for fine-tuning.
-* **Hugging Face Transformers**: An essential library providing access to pretrained models and weights. It was predominantly employed for loading these models and conducting further training during the optimization phase of the project.
-* **NVIDIA TensorRT**: This high-performance deep learning inference optimizer and runtime library was used to optimize BERT models for fast inference.
-* **Transformer-Deploy Library**: A library used for simplifying the process of applying TensorRT inference optimizations to transformer-based models.
+* **NumPy**: A library utilized for enabling efficient operations on multi-dimensional data structures, particularly in scenarios where PyTorch tensors were not appropriate.
+* **Pandas**: A library used for cleaning, transforming, and exploring the data prior to model fine-tuning.
+* **PyTorch**: A library used to build the BERT and LoRA models from scratch and for fine-tuning.
+* **Hugging Face Transformers**: A library used to access pretrained models and weights. It was predominantly employed to load these models and conduct further training in the optimization section of this project.
+* **NVIDIA TensorRT**: A high-performance deep learning inference optimizer and runtime library used to optimize models for fast inference.
+* **Transformer-Deploy Library**: A library used to simplify the the process of applying TensorRT inference optimizations to the models.
 * **Docker**: Deployed to ensure a consistent and replicable environment, particularly instrumental in streamlining the installation of NVIDIA dependencies such as CUDA and cuBLAS.
 ## Table of contents
 * [Part 1: Building BERT from Scratch](#building-bert-from-scratch)
@@ -102,8 +102,6 @@ Six variants of BERT:
 * **LoRA BERT - Rank 8 (last four layers)**: BERT-base adapted with a low-rank approximation of rank 8, applied only on the last four layers
 
 ### Process
-
-Each of these models is initialized with pretrained weights obtained from the Hugging Face Hub. They are then fine-tuned with the training and validation sets using the training loop found in the `BERTTrainer`class. The models are then loaded with the weights from the epoch with the lowest validation loss and evaluated using the test set.
 
 Each model is initialized with pretrained weights from the Hugging Face Hub, then fine-tuned with the training and validation set using the training loop in the `BERTTrainer` class. The models are evaluated on the test set using weights from the epoch with the lowest validation loss.
 
