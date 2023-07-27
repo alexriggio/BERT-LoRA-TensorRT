@@ -137,7 +137,7 @@ Performance of the models after fine-tuning:
 
 The `tensorrt_optimization.ipynb` notebook covers the process of applying optimizations, including INT8 Quantization, to a fine-tuned BERT model for accelerating inference times with NVIDIA TensorRT, facilitated with the Transformer-deploy library.
 
-It is modified from the [transformer-deploy end-to-end walkthrough](https://github.com/ELS-RD/transformer-deploy/blob/main/demo/quantization/quantization_end_to_end.ipynb).
+Modified from the [transformer-deploy end-to-end walkthrough](https://github.com/ELS-RD/transformer-deploy/blob/main/demo/quantization/quantization_end_to_end.ipynb).
 
 ### Setup and Requirements
 
