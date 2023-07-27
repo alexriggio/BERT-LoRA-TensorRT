@@ -135,7 +135,7 @@ Performance of the models after fine-tuning:
 * The five epochs of training time was overkill for most models. However, the model with LoRA applied to the last four layers did not fully converge, probably can increase learning rate.
 ## Optimizing BERT for Fast Inference with NVIDIA TensorRT
 
-The `tensort_optimization.ipynb` notebook covers the process of applying optimizations, including INT8 Quantization, to a fine-tuned BERT model for accelerating inference times with NVIDIA TensorRT, facilitated with the Transformer-deploy library.
+The `tensorrt_optimization.ipynb` notebook covers the process of applying optimizations, including INT8 Quantization, to a fine-tuned BERT model for accelerating inference times with NVIDIA TensorRT, facilitated with the Transformer-deploy library.
 
 ### Setup and Requirements
 
