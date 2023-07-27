@@ -159,7 +159,7 @@ Additionally, the `tensorrt_optimization.ipynb` notebook depends on the `transfo
 
 ### Model Selection
 
-I focus on optimizing the fine-tuned BERT-base model. This choice represents a balance between performance and complexity: the BERT-base model had the second-best performance of all the [models fine-tuned](#models), and it achieves this performance without the added complexity of incorporating tabular data.
+I focus on optimizing the fine-tuned BERT-base model. This choice represents a balance between performance and complexity: the BERT-base model has the second-best performance of all the [models fine-tuned](#models), and it achieves this performance without the added complexity of incorporating tabular data.
 
 ### INT8 Quantization Process
 
