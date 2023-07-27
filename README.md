@@ -16,7 +16,7 @@ This project makes use of the following technologies and tools:
 * **PyTorch**: A library used to build the BERT and LoRA models from scratch and for fine-tuning.
 * **Hugging Face Transformers**: A library used to access pretrained models and weights. It was predominantly employed to load these models and conduct further training in the optimization section of this project.
 * **NVIDIA TensorRT**: A high-performance deep learning inference optimizer and runtime library used to optimize models for fast inference.
-* **Transformer-Deploy Library**: A library used to simplify the the process of applying TensorRT inference optimizations to the models.
+* **Transformer-Deploy**: A library used to simplify the the process of applying TensorRT inference optimizations to the models.
 * **ONNX**: An open standard for representing machine learning models used for converting PyTorch models into a format that can be optimized by TensorRT.
 * **Docker**: Deployed to ensure a consistent and replicable environment, streamlining the installation of NVIDIA dependencies such as CUDA and cuBLAS.
 
