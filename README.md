@@ -16,7 +16,7 @@ This project makes use of the following technologies and tools:
 * **PyTorch**: A library used to build the BERT and LoRA models from scratch and for fine-tuning.
 * **Hugging Face Transformers**: A library used to access pretrained models and weights. It was predominantly employed to load models and conduct further training in the optimization section of this project.
 * **NVIDIA TensorRT**: A high-performance deep learning inference optimizer and runtime library used to optimize models for fast inference.
-* **Transformer-Deploy**: A library used to simplify the the process of applying TensorRT inference optimizations to the models.
+* **Transformer-Deploy**: A library used to simplify the process of applying TensorRT inference optimizations to the models.
 * **ONNX**: An open standard for representing machine learning models used for converting PyTorch models into a format that can be optimized by TensorRT.
 * **Docker**: Deployed to ensure a consistent and replicable environment, streamlining the installation of NVIDIA dependencies such as CUDA and cuBLAS.
 
@@ -40,11 +40,11 @@ This project makes use of the following technologies and tools:
 ## Building BERT from Scratch
 The `bert_from_scratch.py` script is used to build a BERT model for Sequence Classification from scratch. It implements the architecture and mechanics of the BERT model, creating a ready-to-train model that can be fine-tuned on specific tasks. Notably, the model architecture and module/parameter names mirror the Hugging Face implementation, ensuring that weights between the two are compatible. This script includes a `from_pretrained` class method, working in the same way as in Hugging Face's model.
 
-For an in-depth explanation of the theory behind this model, as well as an understanding of the code, refer to the accompanying Medium article: Coming soon...
+For an in-depth explanation of the theory behind this model, as well as an understanding of the code, refer to the accompanying [Medium article](https://medium.com/@alexmriggio/bert-for-sequence-classification-from-scratch-code-and-theory-fb88053800fa).
 ## Building LoRA From Scratch
 The `lora_from_scratch.py` script contains a custom implementation of the LoRA (Low-Rank Adaptation) method. LoRA is a technique that aims to maintain a high level of accuracy while reducing the computational cost and complexity associated with fine-tuning large models. It does this by appending low-rank adaptation matrices to specific parameters of the model, while the remaining parameters are "frozen" or kept constant. As a result, the total quantity of trainable parameters is greatly reduced. 
 
-For a comprehensive understanding of the theory and implementation details behind LoRA, please refer to the accompanying Medium article: Coming soon...
+For a comprehensive understanding of the theory and implementation details behind LoRA, please refer to the accompanying [Medium article](https://medium.com/@alexmriggio/lora-low-rank-adaptation-from-scratch-code-and-theory-f31509106650).
 
 
 ## Fine-Tuning BERT with LoRA for Stack Overflow Question Classification
