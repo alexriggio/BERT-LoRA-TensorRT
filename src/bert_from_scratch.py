@@ -299,7 +299,10 @@ class BertForSequenceClassification(nn.Module):
         sd_keys_hf = sd_hf.keys()
 
         # Check that all keys match between the state dictionary of the custom and pretrained model
-        assert len(sd_keys_hf) == len(sd_keys), f"mismatched keys: {len(sd_keys_hf)} != {len(sd_keys)}"
+        assert len(sd_keys_hf) == len(sd_keys), (
+            f"mismatched keys: {len(sd_keys_hf)} != {len(sd_keys)}. "
+            "Try using transformers==4.28.1 as this version is known to be compatible."
+        )
         
         # Replace weights in the custom model with the weights from the pretrained model
         for k in sd_keys_hf:
